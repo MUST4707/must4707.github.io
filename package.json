@@ -1,0 +1,23 @@
+{
+  "name": "must4707.github.io",
+  "version": "1.0.0",
+  "description": "Computer Programming for Musicians Presentations by Sam Wells",
+  "homepage": "https://github.com/MUST4707/must4707.github.io#readme",
+  "bugs": {
+    "url": "https://github.com/MUST4707/must4707.github.io/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MUST4707/must4707.github.io.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "pres.js",
+  "scripts": {
+    "prepare:reveal": "rm -rf vendor/reveal && mkdir -p vendor/reveal/dist vendor/reveal/plugin && cp -R node_modules/reveal.js/dist/* vendor/reveal/dist/ && cp -R node_modules/reveal.js/plugin/* vendor/reveal/plugin/"
+  },
+  "dependencies": {
+    "reveal.js": "^5.2.1"
+  }
+}
