@@ -35,7 +35,9 @@ Reveal.initialize = options => {
 	// Invoke any enqueued API calls
 	enqueuedAPICalls.map( method => method( Reveal ) );
 
-	return Reveal.initialize();
+	return Reveal.initialize({
+		plugins: [RevealMarkdown],
+	});
 
 }
 
