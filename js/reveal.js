@@ -28,6 +28,12 @@ import {
 	POST_MESSAGE_METHOD_BLACKLIST
 } from './utils/constants.js'
 
+/**
+ *
+ * @type {string}
+ */
+
+
 // The reveal.js version
 export const VERSION = '5.2.1';
 
