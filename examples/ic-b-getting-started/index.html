@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome to Computer Programming for Musicians</title>
+
+</head>
+<body>
+    <button>This is a button.</button>
+    <p>Reload Page to stop sound</p>
+
+
+    <script>
+        const ctx = new AudioContext();
+
+        const osc = new OscillatorNode(ctx);
+        osc.type = "sine";
+        osc.frequency.value = 220;
+
+        const gain = new GainNode(ctx);
+        gain.gain.value = 0.5;
+
+        osc.connect(gain);
+        gain.connect(ctx.destination)
+
+        osc.start();
+
+
+        //below is a line of code in the audio doesn't start automatically
+        document.querySelector("button").onclick = ctx.resume()
+    </script>
+
+</body>
+</html>
