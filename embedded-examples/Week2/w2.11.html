@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ex11</title>
+</head>
+<body>
+
+    <button id="start">Play</button>
+    <script>
+        const ctx = new AudioContext();
+        const osc = new OscillatorNode(ctx);
+        const gain = new GainNode(ctx);
+
+        osc.type = "triangle";             // property
+        osc.frequency.value = 165;     // property
+        gain.gain.value = 0.2;         // property
+
+        osc.connect(gain);             // method
+        gain.connect(ctx.destination); // method
+
+
+
+
+        const startButton = document.querySelector("#start");
+        startButton.addEventListener("click", () => {
+            ctx.resume();
+            osc.start();
+        });
+    </script>
+
+
+</body>
+</html>

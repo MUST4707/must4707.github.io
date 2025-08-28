@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ex11</title>
+</head>
+<body>
+
+    <input id="freq" type="range" min="100" max="1000" value="440"><label id="freqDisplay">440</label>
+    <script>
+        const ctx = new AudioContext();        // create AudioContext
+        ctx.suspend();                         // prevent auto start
+
+        const osc = new OscillatorNode(ctx);   // oscillator
+        const gain = new GainNode(ctx);        // gain node
+        gain.gain.value = 0.2;                 // set gain
+
+        osc.connect(gain);                     // connect osc -> gain
+        gain.connect(ctx.destination);         // connect gain -> speakers
+        osc.start();                           // start oscillator
+
+        const slider = document.querySelector("#freq"); // get slider element
+        slider.addEventListener("input", () => {
+            ctx.resume();                                      // resume context on input
+            osc.frequency.value = Number(slider.value);        // update osc frequency
+            document.querySelector("#freqDisplay").textContent = slider.value; // update display
+        });
+
+    </script>
+
+
+</body>
+</html>

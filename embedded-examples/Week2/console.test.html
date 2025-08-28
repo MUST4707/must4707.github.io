@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<body style='font-family: monospace; background:#fafafa;'>
+    <input id='gain' type='range' min='0' max='1' step='0.01' value='0.2'>
+    <span id='gainDisplay'>0.2</span>
+    <pre id='log'></pre>
+
+    <script>
+        // capture a <pre> element to show logs
+        const logBox = document.getElementById('log');
+
+        // monkey-patch console.log
+        console.log = function(...args) {
+            logBox.textContent += args.join(' ') + '\\n';
+        };
+
+        const gainSlider = document.querySelector('#gain');
+        const gainDisplay = document.querySelector('#gainDisplay');
+        gainDisplay.textContent = gainSlider.value;
+
+        gainSlider.addEventListener('input', () => {
+            gainDisplay.textContent = gainSlider.value;
+            console.log('gain is now', gainSlider.value);
+        });
+    </script>
+</body>
+</html>

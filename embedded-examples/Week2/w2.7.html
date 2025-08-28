@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ex6</title>
+</head>
+<body>
+
+    <input id="freq" type="range" min="100" max="1000" value="440">
+    <span id="freqDisplay">440</span>
+
+    <script>
+        const slider = document.querySelector("#freq");
+        const display = document.querySelector("#freqDisplay");
+
+        display.textContent = slider.value;
+
+        slider.addEventListener("input", () => {
+            display.textContent = slider.value;
+        });
+    </script>
+
+
+
+</body>
+</html>

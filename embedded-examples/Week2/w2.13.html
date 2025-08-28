@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ex11</title>
+</head>
+<body>
+
+    <input id="gain" type="range" min="0" max="1" step="0.01" value="0.2"><label id="gainDisplay">0.2</label>
+    <script>
+        const ctx = new AudioContext();        // create AudioContext
+        ctx.suspend();                         // prevent auto start
+
+        const osc = new OscillatorNode(ctx);   // oscillator
+        const gain = new GainNode(ctx);        // gain node
+        gain.gain.value = 0.2;                 // set initial gain
+
+        osc.connect(gain);                     // connect osc → gain
+        gain.connect(ctx.destination);         // connect gain → speakers
+        osc.start();                           // start oscillator
+
+        const slider = document.querySelector("#gain"); // get slider element
+        slider.addEventListener("input", () => {
+            ctx.resume();                                      // resume context on input
+            gain.gain.value = Number(slider.value);            // update gain
+            document.querySelector("#gainDisplay").textContent = slider.value; // update display
+        });
+
+    </script>
+
+
+</body>
+</html>

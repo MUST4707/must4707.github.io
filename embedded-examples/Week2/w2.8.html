@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ex8</title>
+</head>
+<body>
+
+    <input id="gain" type="range" min="0" max="1" step="0.01" value="0.2">
+
+    <script>
+        const gainSlider = document.querySelector("#gain");
+
+        gainSlider.addEventListener("input", () => {
+            console.log("gain is now", Number(gainSlider.value));
+        });
+    </script>
+
+
+
+</body>
+</html>

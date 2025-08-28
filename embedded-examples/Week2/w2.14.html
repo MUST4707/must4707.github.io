@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ex14</title>
+</head>
+<body>
+
+    <button>Start</button>
+    <script>
+        const ctx = new AudioContext();
+        const master = new GainNode(ctx, { gain: 0.125 });
+        master.connect(ctx.destination);
+
+        const osc1 = new OscillatorNode(ctx, { frequency: 110 });
+        const osc2 = new OscillatorNode(ctx, { frequency: 330 });
+        const osc3 = new OscillatorNode(ctx, { frequency: 513.33333 });
+
+        osc1.connect(master);
+        osc2.connect(master);
+        osc3.connect(master);
+
+        document.querySelector("button").addEventListener("click",  () => {
+            ctx.resume();
+            osc1.start();
+            osc2.start();
+            osc3.start();
+        });
+
+    </script>
+
+
+</body>
+</html>

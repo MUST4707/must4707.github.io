@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ex9</title>
+</head>
+<body>
+
+    <button id="start">Play</button>
+    <script>
+        const ctx = new AudioContext();
+        const osc = new OscillatorNode(ctx);
+        const gain = new GainNode(ctx, { gain: 0.2 });
+
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+
+        const startButton = document.querySelector("#start");
+        startButton.addEventListener("click", () => {
+            ctx.resume();
+            osc.start();
+        });
+    </script>
+
+
+</body>
+</html>
