@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ex14</title>
+</head>
+<body>
+
+    <button>Play</button>
+
+    <script>
+        function playNote(someContext, frequency, duration) {
+            const osc = new OscillatorNode(someContext);
+            const gain = new GainNode(someContext);
+            osc.frequency.value = frequency;
+            osc.type = "triangle"
+            gain.gain.value = 0;
+
+            osc.connect(gain).connect(someContext.destination);
+
+            let now = someContext.currentTime;
+            gain.gain.linearRampToValueAtTime(0.25, now + 0.25);  // attack
+            gain.gain.linearRampToValueAtTime(0, now + duration); // release
+
+            osc.start();
+            osc.stop(now + duration);
+        }
+
+        const myCtx = new AudioContext();
+        document.querySelector("button").onclick = ()=> playNote(myCtx, 220, 2); // must decide duration in advance
+
+    </script>
+
+
+</body>
+</html>

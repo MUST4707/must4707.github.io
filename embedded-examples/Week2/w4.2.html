@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ex4.2</title>
+</head>
+<body>
+
+    <p>Look at the console...</p>
+
+    <script>
+        class Rectangle {
+            constructor(width, height) {
+                this.width = width;     // property
+                this.height = height;   // property
+            }
+
+            area() {
+                return this.width * this.height; // method
+            }
+        }
+
+        let rect1 = new Rectangle(5, 10);
+        let rect2 = new Rectangle(4, 3);
+        console.log(rect1.area()); // 50
+        console.log(rect2.area()); // 12
+
+        rect1.width = 8;
+        console.log(rect1.area()); // 80
+    </script>
+
+
+</body>
+</html>

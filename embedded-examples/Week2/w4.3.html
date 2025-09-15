@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ex4.3</title>
+</head>
+<body>
+
+    <button id="startButton">Play</button>
+    <button id="stopButton">Stop</button>
+
+    <script>
+        class SynthNote {
+            constructor(someAudCtx, frequency) {
+                this.ctx = someAudCtx; // store context in the instance
+                this.osc = new OscillatorNode(this.ctx);
+                this.adsr = new GainNode(this.ctx);
+                this.osc.frequency.value = frequency;
+                this.adsr.gain.value = 0;
+
+                this.osc.connect(this.adsr).connect(ctx.destination);
+            }
+
+            start() {
+                let now = this.ctx.currentTime;
+                this.adsr.gain.linearRampToValueAtTime(0.25, now + 0.25); // attack
+                this.osc.start();
+            }
+
+            stop() {
+                let now = this.ctx.currentTime;
+                this.adsr.gain.setValueAtTime(this.adsr.gain.value, now)
+                this.adsr.gain.linearRampToValueAtTime(0, now + 2); // release
+                // this.osc.stop(now + 1.5);
+            }
+        }
+
+        const ctx = new AudioContext();
+        let note;
+        document.querySelector("#startButton").onclick = ()=> {
+            note = new SynthNote(ctx, 440);
+            note.start();
+        }
+        document.querySelector("#stopButton").onclick = ()=> note.stop();
+    </script>
+
+
+</body>
+</html>
