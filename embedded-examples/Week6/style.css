@@ -1,0 +1,22 @@
+body {
+    font-family: monospace;
+    background-color: #111;
+    color: #00ff00;
+    padding: 20px;
+}
+h1 {
+    color: #00ff00;
+}
+table {
+    width: 50%;
+}
+table, th, td {
+    border: 1px solid;
+    border-color: #0f0;
+    padding: 5px;
+    border-collapse: collapse;
+}
+.midi-data {
+    margin-top: 20px;
+    white-space: pre;
+}
